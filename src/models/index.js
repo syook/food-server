@@ -1,9 +1,9 @@
-const UserModel = require('./user');
-const FoodItemModel = require('./foodItem');
+const User = require('./user');
+const FoodItem = require('./foodItem');
 const DailyMenu = require('./DailyMenu');
 
 module.exports = {
-  UserModel,
-  FoodItemModel,
+  User,
+  FoodItem,
   DailyMenu
 };
