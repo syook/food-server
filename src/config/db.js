@@ -1,17 +1,15 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-const {mlabURI, localDbURI} = require('./env')
+const { mlabURI, localDbURI } = require('./env');
 
-
-const URI = process.env.NDOE_ENV == 'production' ? mlabURI: localDbURI
+const URI = process.env.NDOE_ENV == 'production' ? mlabURI : localDbURI;
 
 const db = mongoose.createConnection(URI, { poolSize: 3, useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 
-mongoose.set('debug', true) // enable logging collection methods + arguments to the console
-
+mongoose.set('debug', true); // enable logging collection methods + arguments to the console
 
 // CONNECTION EVENTS
 // When successfully connected
@@ -37,4 +35,4 @@ process.on('SIGINT', function() {
   });
 });
 
-module.exports = db
+module.exports = db;
