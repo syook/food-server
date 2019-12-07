@@ -1,11 +1,18 @@
 const db = require('../config/db');
 const Schema = require('mongoose').Schema;
 
+const UserDataSchema = new Schema({
+  [Schema.Types.ObjectId]: {
+    type: Schema.Types.ObjectId
+  }
+});
+
 const DailyMenuSchema = new Schema(
   {
     date: {
       type: Date,
-      default: Date.now
+      default: Date.now,
+      required: true
     },
     breakfastItems: {
       type: [Schema.Types.ObjectId],
@@ -16,7 +23,19 @@ const DailyMenuSchema = new Schema(
       ref: 'FoodItem'
     },
     usersData: {
-      type: Schema.Types.Mixed
+      [Schema.Types.ObjectId]: {
+        chapatiCount: {
+          type: Number
+        },
+        breakfast: {
+          type: Boolean,
+          default: true
+        },
+        lunch: {
+          type: Boolean,
+          default: true
+        }
+      }
     }
   },
   {
