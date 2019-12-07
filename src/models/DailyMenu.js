@@ -16,7 +16,19 @@ const DailyMenuSchema = new Schema(
       ref: 'FoodItem'
     },
     usersData: {
-      type: Schema.Types.Mixed
+      [Schema.Types.ObjectId]: {
+        chapatiCount: {
+          type: Number
+        },
+        breakfast: {
+          type: Boolean,
+          default: true
+        },
+        lunch: {
+          type: Boolean,
+          default: true
+        }
+      }
     }
   },
   {

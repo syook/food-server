@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-const { mlabURI, localDbURI } = require('./env');
+const { mLabURI, localDbURI } = require('./env');
 
-const URI = process.env.NODE_ENV === 'production' ? mlabURI : localDbURI;
+const URI = process.env.NODE_ENV === 'production' ? mLabURI : localDbURI;
 
 const db = mongoose.createConnection(URI, { poolSize: 3, useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set('useCreateIndex', true);
