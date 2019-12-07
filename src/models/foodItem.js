@@ -9,7 +9,8 @@ const FoodItem = new Schema(
     },
     type: {
       type: String,
-      enum: ['lunch', 'breakfast']
+      enum: ['lunch', 'breakfast'],
+      required: true
     }
   },
   {
