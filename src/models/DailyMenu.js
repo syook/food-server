@@ -1,18 +1,11 @@
 const db = require('../config/db');
 const Schema = require('mongoose').Schema;
 
-const UserDataSchema = new Schema({
-  [Schema.Types.ObjectId]: {
-    type: Schema.Types.ObjectId
-  }
-});
-
 const DailyMenuSchema = new Schema(
   {
     date: {
       type: Date,
-      default: Date.now,
-      required: true
+      default: Date.now
     },
     breakfastItems: {
       type: [Schema.Types.ObjectId],
