@@ -14,7 +14,7 @@ const UserSchema = new Schema(
       required: true
     },
     mobile: {
-      type: Number
+      type: String
     },
     chapatiCount: {
       type: Number
