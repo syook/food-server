@@ -2,6 +2,7 @@ const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
 
 const { getFoodItems, getFoodItem, createFoodItem, updateFoodItem, deleteFoodItem } = require('./api/foodItem');
+const { getUsers, getUser, createUser, updateUser, deleteUser } = require('./api/user');
 
 var schema = buildSchema(`
   type FoodItem {
@@ -9,15 +10,27 @@ var schema = buildSchema(`
     name: String!,
     type: String!,
   },
+  type User {
+    _id: String!,
+    name: String!,
+    email: String!,
+    mobile: String!,
+    chapatiCount: Int!,
+  },
   type Query {
     hello: String,
     foodItems: [FoodItem!]!,
     foodItem(id: String!): FoodItem,
+    users: [User!]!,
+    user(id: String!): User,
   }
   type Mutation {
     createFoodItem(name: String!, type: String!): FoodItem!,
     updateFoodItem(id: String!, name: String!, type: String!): FoodItem!,
     deleteFoodItem(id: String!): FoodItem!,
+    createUser(name: String!, email: String!, mobile: String!, chapatiCount: Int!): User!,
+    updateUser(id: String!, name: String!, email: String!, mobile: String!, chapatiCount: Int!): User!,
+    deleteUser(id: String!): User!,
   }
 `);
 
@@ -28,7 +41,12 @@ const root = {
   foodItem: async ({ id }) => await getFoodItem(id),
   createFoodItem: async ({ name, type }) => await createFoodItem(name, type),
   updateFoodItem: async ({ id, name, type }) => await updateFoodItem(id, name, type),
-  deleteFoodItem: async ({ id }) => await deleteFoodItem(id)
+  deleteFoodItem: async ({ id }) => await deleteFoodItem(id),
+  users: async () => await getUsers(),
+  user: async ({ id }) => await getUser(id),
+  createUser: async body => await createUser(body),
+  updateUser: async body => await updateUser(body),
+  deleteUser: async ({ id }) => await deleteUser(id)
 };
 
 const graphql = app => {
