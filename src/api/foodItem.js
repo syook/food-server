@@ -10,24 +10,23 @@ const getFoodItems = async () => {
 
 const getFoodItem = async id => {
   try {
-    throw new Error('test error');
     return await FoodItem.findById(id);
   } catch (error) {
     throw error;
   }
 };
 
-const createFoodItem = async name => {
+const createFoodItem = async (name, type) => {
   try {
-    return await FoodItem.create({ name });
+    return await FoodItem.create({ name, type });
   } catch (error) {
     throw error;
   }
 };
 
-const updateFoodItem = async (id, name) => {
+const updateFoodItem = async (id, name, type) => {
   try {
-    return await FoodItem.findByIdAndUpdate(id, { name }, { new: true });
+    return await FoodItem.findByIdAndUpdate(id, { name, type }, { new: true });
   } catch (error) {
     throw error;
   }

@@ -7,6 +7,7 @@ var schema = buildSchema(`
   type FoodItem {
     _id: String!,
     name: String!,
+    type: String!,
   },
   type Query {
     hello: String,
@@ -14,8 +15,8 @@ var schema = buildSchema(`
     foodItem(id: String!): FoodItem,
   }
   type Mutation {
-    createFoodItem(name: String!): FoodItem!,
-    updateFoodItem(id: String!, name: String!): FoodItem!,
+    createFoodItem(name: String!, type: String!): FoodItem!,
+    updateFoodItem(id: String!, name: String!, type: String!): FoodItem!,
     deleteFoodItem(id: String!): FoodItem!,
   }
 `);
@@ -25,8 +26,8 @@ const root = {
   hello: () => 'Hello world!',
   foodItems: async () => await getFoodItems(),
   foodItem: async ({ id }) => await getFoodItem(id),
-  createFoodItem: async ({ name }) => await createFoodItem(name),
-  updateFoodItem: async ({ id, name }) => await updateFoodItem(id, name),
+  createFoodItem: async ({ name, type }) => await createFoodItem(name, type),
+  updateFoodItem: async ({ id, name, type }) => await updateFoodItem(id, name, type),
   deleteFoodItem: async ({ id }) => await deleteFoodItem(id)
 };
 
