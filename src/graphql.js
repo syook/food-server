@@ -6,12 +6,12 @@ const { getUsers, getUser, createUser, updateUser, deleteUser } = require('./api
 
 var schema = buildSchema(`
   type FoodItem {
-    _id: String!,
+    _id: ID!,
     name: String!,
     type: String!,
   },
   type User {
-    _id: String!,
+    _id: ID!,
     name: String!,
     email: String!,
     mobile: String!,
@@ -26,11 +26,11 @@ var schema = buildSchema(`
   }
   type Mutation {
     createFoodItem(name: String!, type: String!): FoodItem!,
-    updateFoodItem(id: String!, name: String!, type: String!): FoodItem!,
-    deleteFoodItem(id: String!): FoodItem!,
+    updateFoodItem(id: ID!, name: String!, type: String!): FoodItem!,
+    deleteFoodItem(id: ID!): FoodItem!,
     createUser(name: String!, email: String!, mobile: String!, chapatiCount: Int!): User!,
-    updateUser(id: String!, name: String!, email: String!, mobile: String!, chapatiCount: Int!): User!,
-    deleteUser(id: String!): User!,
+    updateUser(id: ID!, name: String!, email: String!, mobile: String!, chapatiCount: Int!): User!,
+    deleteUser(id: ID!): User!,
   }
 `);
 
