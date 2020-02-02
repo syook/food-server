@@ -26,11 +26,11 @@ var schema = buildSchema(`
   }
   type Mutation {
     createFoodItem(name: String!, type: String!): FoodItem!,
-    updateFoodItem(id: ID!, name: String!, type: String!): FoodItem!,
-    deleteFoodItem(id: ID!): FoodItem!,
+    updateFoodItem(id: String!, name: String!, type: String!): FoodItem!,
+    deleteFoodItem(id: String!): FoodItem!,
     createUser(name: String!, email: String!, mobile: String!, chapatiCount: Int!): User!,
-    updateUser(id: ID!, name: String!, email: String!, mobile: String!, chapatiCount: Int!): User!,
-    deleteUser(id: ID!): User!,
+    updateUser(id: String!, name: String!, email: String!, mobile: String!, chapatiCount: Int!): User!,
+    deleteUser(id: String!): User!,
   }
 `);
 
@@ -56,7 +56,10 @@ const graphql = app => {
       schema: schema, // Must be provided
       rootValue: root,
       graphiql: true, // Enable GraphQL when server endpoint is accessed in browser
-      customFormatErrorFn: err => ({ message: err.message, statusCode: 500 })
+      customFormatErrorFn: err => {
+        console.log(err);
+        return { message: err.message, statusCode: 500 };
+      }
     })
   );
 };

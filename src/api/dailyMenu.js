@@ -20,7 +20,6 @@ const createDailyMenu = async ({ date, breakfastItems, lunchItems, usersData }) 
   try {
     return await DailyMenu.create({ date, breakfastItems, lunchItems, usersData });
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };

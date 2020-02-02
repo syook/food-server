@@ -1,6 +1,6 @@
 const User = require('./user');
 const FoodItem = require('./foodItem');
-const DailyMenu = require('./DailyMenu');
+const DailyMenu = require('./dailyMenu');
 
 module.exports = {
   User,
